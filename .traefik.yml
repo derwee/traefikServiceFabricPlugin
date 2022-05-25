@@ -1,8 +1,8 @@
 type: provider
-import: github.com/dariopb/traefikServiceFabricPlugin
+import: github.com/derwee/traefikServiceFabricPlugin
 
 name: serviceFabric
-displayName: Service Fabric Plugin
+displayName: Service Fabric Plugin derwee
 summary: 'Service Fabric Configuration Provider Plugin'
 iconPath: media/sfTraefikIcon.png
 
