@@ -405,7 +405,6 @@ func (p *Provider) generateConfiguration(extendedItems []ServiceItemExtended) *d
 
 		// Create the traefik services based on the sf service partitions
 		for _, part := range item.Partitions {
-			fmt.Println("Part:", part)
 			partitionID := part.PartitionInformation.ID
 			name := fmt.Sprintf("%s-%s", baseName, partitionID)
 			rule := fmt.Sprintf("PathPrefix(`/%s/%s`)", item.ID, partitionID)
@@ -421,9 +420,8 @@ func (p *Provider) generateConfiguration(extendedItems []ServiceItemExtended) *d
 			lbServers := make([]dynamic.Server, 0)
 			if part.ServiceKind == kindStateless {
 				for _, instance := range part.Instances {
-					fmt.Println("Instance:", instance, instance.ReplicaItemBase)
 					url, err := getReplicaDefaultEndpoint(instance.ReplicaItemBase)
-					fmt.Println("Url:", url)
+					log.Printf("Url '%s' resolved for service '%s'", url, name)
 					if err == nil && url != "" {
 						lbServers = append(lbServers, dynamic.Server{
 							URL: url,
